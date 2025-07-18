@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabbath School Lesson - Thursday, July 17</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.8; /* Increased line height for readability */
+	    padding: 25px;
+        }
+
+        .presentation-container {
+            background-color: #ffffff;
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+            width: 100%; /* Increased width */
+            padding: 15px; /* More padding */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 15px; /* More padding */
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em; /* Larger font */
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 2.8em; /* Larger font */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 2.2em; /* Larger font */
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .verse-content {
+            background-color: #e8f5e9; /* Light green background for verses */
+            border-left: 5px solid #4CAF50; /* Green border */
+            padding: 20px;
+            margin: 20px auto;
+            text-align: left;
+            font-style: italic;
+            font-size: 2.2em;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px; /* Larger buttons */
+            font-size: 1.7em; /* Larger font in buttons */
+            border-radius: 8px; /* More rounded buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 0 12px; /* More spacing between buttons */
+            min-width: 120px; /* Ensure consistent button width */
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px); /* More pronounced hover effect */
+        }
+
+        button:active {
+            background-color: #1f628d;
+            transform: translateY(0);
+        }
+
+        .question-options {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 1050px; /* Constrain options width */
+            font-size: 2.1em; /* Larger font for options */
+        }
+
+        .question-options label {
+            display: block;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .question-options label:hover {
+            background-color: #e0f2f7; /* Light hover background */
+        }
+
+        .question-options input[type="radio"] {
+            margin-right: 15px; /* More space for radio buttons */
+            transform: scale(1.5); /* Larger radio buttons */
+            vertical-align: middle;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.9em; /* Larger feedback text */
+            margin-bottom: 25px; /* Space before navigation buttons */
+        }
+
+        .feedback.correct {
+            color: #27ae60; /* Green for correct */
+        }
+
+        .feedback.incorrect {
+            color: #e74c3c; /* Red for incorrect */
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide active" id="slide1">
+            <h1>Thursday, July 17: Like God to Pharaoh</h1>
+            <p>Today's focus: How the Lord deals with Moses’ objection as he prepares to lead God's people.</p>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide2">
+            <h2>Moses' Mission and Objection</h2>
+            <p>The Lord commands Moses to go and speak with Pharaoh. However, Moses expresses his lack of self-confidence and objects:</p>
+            <div class="verse-content">
+                <b>Exodus 6:28-30 (KJV):</b><br>
+                <sup>28</sup> And it came to pass on the day when the LORD spake unto Moses in the land of Egypt,<br>
+                <sup>29</sup> That the LORD spake unto Moses, saying, I am the LORD: speak thou unto Pharaoh king of Egypt all that I say unto thee.<br>
+                <sup>30</sup> And Moses said before the LORD, Behold, I am of uncircumcised lips, and how shall Pharaoh hearken unto me?
+            </div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide3">
+            <h2>Understanding Moses' Deeper Objection</h2>
+            <p>The lesson commentary provides additional insight into Moses' objection:</p>
+            <p><b>"With a lack of self-confidence, Moses again objects, 'Why would Pharaoh listen to me?' Here again we can see not just Moses’ humility but, again, his desire to get out of the task, which so far has not gone too well."</b></p>
+            <p>According to this lesson commentary, what was a significant underlying factor in Moses' objection, beyond his lack of self-confidence?</p>
+            <div class="question-options">
+                <label><input type="radio" name="q1" value="a"> A) He feared Pharaoh's magical powers.</label>
+                <label><input type="radio" name="q1" value="b"> B) He was concerned about the Israelites' willingness to follow him.</label>
+                <label><input type="radio" name="q1" value="c"> C) He had a desire to get out of the task because previous attempts hadn't gone well.</label>
+                <label><input type="radio" name="q1" value="d"> D) He felt God was being unfair by choosing him.</label>
+            </div>
+            <button onclick="checkAnswer('q1', 'c')">Check Answer</button>
+            <div id="feedback-q1" class="feedback"></div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide4">
+            <h2>The Lord's Response to Moses' Objection</h2>
+            <p>Now, considering all of Moses' reasons for objecting, how does the Lord deal with Moses’ objection, particularly regarding his speaking ability?</p>
+            <div class="question-options">
+                <label><input type="radio" name="q2" value="a"> A) The Lord immediately made Moses eloquent through a miracle.</label>
+                <label><input type="radio" name="q2" value="b"> B) The Lord appointed Aaron, Moses' brother, to be his spokesperson or prophet.</label>
+                <label><input type="radio" name="q2" value="c"> C) The Lord withdrew the command, finding someone else to lead Israel.</label>
+                <label><input type="radio" name="q2" value="d"> D) The Lord told Moses that Pharaoh would simply have to listen regardless of his speech.</label>
+            </div>
+            <button onclick="checkAnswer('q2', 'b')">Check Answer</button>
+            <div id="feedback-q2" class="feedback"></div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide5">
+            <h2>Aaron: Moses' Prophet & The Role of a Prophet</h2>
+            <p>God mercifully gives Aaron to help Moses, defining the role of a prophet:</p>
+            <div class="verse-content">
+                <b>Exodus 7:1-2 (KJV):</b><br>
+                <sup>1</sup> And the LORD said unto Moses, See, I have made thee a god to Pharaoh: and Aaron thy brother shall be thy prophet.<br>
+                <sup>2</sup> Thou shalt speak all that I command thee: and Aaron thy brother shall speak unto Pharaoh, that he send the children of Israel out of his land.
+            </div>
+            <p>A prophet is a spokesperson for God; he or she is His mouthpiece to transmit and interpret God’s word to the people.</p>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide6">
+            <h2>Question: The Role of a Prophet</h2>
+            <p>According to the lesson's definition, what is the primary role of a prophet?</p>
+            <div class="question-options">
+                <label><input type="radio" name="q3" value="a"> A) To perform miracles to convince people to obey.</label>
+                <label><input type="radio" name="q3" value="b"> B) To act as a direct ruler or king over God's people.</label>
+                <label><input type="radio" name="q3" value="c"> C) To be a spokesperson, transmitting and interpreting God's word.</label>
+                <label><input type="radio" name="q3" value="d"> D) To predict the future for the benefit of their nation.</label>
+            </div>
+            <button onclick="checkAnswer('q3', 'c')">Check Answer</button>
+            <div id="feedback-q3" class="feedback"></div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide7">
+            <h2>Pharaoh's Hardened Heart and God's Purpose</h2>
+            <p>God warns Moses that the confrontation will be tense and long, and that Pharaoh's heart will be hardened:</p>
+            <div class="verse-content">
+                <b>Exodus 4:21 (KJV):</b><br>
+                And the LORD said unto Moses, When thou goest to return into Egypt, see that thou do all those wonders before Pharaoh, which I have put in thine hand: but I will harden his heart, that he shall not let the people go.<br><br>
+                <b>Exodus 7:3 (KJV):</b><br>
+                And I will harden Pharaoh's heart, and multiply my signs and my wonders in the land of Egypt.
+            </div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide8">
+            <h2>Question: The Ultimate Outcome</h2>
+            <p>Despite the resistance and the hardening of Pharaoh's heart, what is the ultimate positive outcome God declares will result?</p>
+            <div class="verse-content">
+                <b>Exodus 7:5 (KJV):</b><br>
+                And the Egyptians shall know that I am the LORD, when I stretch forth mine hand upon Egypt, and bring out the children of Israel from among them.
+            </div>
+            <div class="question-options">
+                <label><input type="radio" name="q4" value="a"> A) Pharaoh will immediately repent and let Israel go.</label>
+                <label><input type="radio" name="q4" value="b"> B) The Israelites will realize their own strength and fight for freedom.</label>
+                <label><input type="radio" name="q4" value="c"> C) The Egyptians will know that the God of Israel is the LORD.</label>
+                <label><input type="radio" name="q4" value="d"> D) The chaos will ultimately lead to a permanent alliance between Egypt and Israel.</label>
+            </div>
+            <button onclick="checkAnswer('q4', 'c')">Check Answer</button>
+            <div id="feedback-q4" class="feedback"></div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide9">
+            <h2>Our Excuses for God's Call</h2>
+            <p>Moses ran out of excuses for not following what God had called him to do. What excuses might **we** use to try to get out of what we know God wants us to do?</p>
+            <div class="question-options">
+                <label><input type="radio" name="q5" value="a"> A) Feeling unqualified or lacking the necessary skills and abilities.</label>
+                <label><input type="radio" name="q5" value="b"> B) Perceiving the task as too difficult, inconvenient, or requiring too much sacrifice.</label>
+                <label><input type="radio" name="q5" value="c"> C) Fearing failure, rejection, or the judgment of others.</label>
+                <label><input type="radio" name="q5" value="d"> D) All of the above are common human excuses.</label>
+            </div>
+            <button onclick="checkAnswer('q5', 'd')">Check Answer</button>
+            <div id="feedback-q5" class="feedback"></div>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="slide" id="slide10">
+            <h2>Concluding Thought</h2>
+            <p>Just as God dealt with Moses' objections and empowered him for the task, He will also equip us and glorify Himself through our obedience, even when things seem **"rough."**</p>
+            <button onclick="prevSlide()">Previous</button>
+            <button onclick="resetPresentation()">Restart</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        // Modified for circular navigation
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+            } else {
+                currentSlide = 0; // Loop to the first slide
+            }
+            showSlide(currentSlide);
+        }
+
+        // Modified for circular navigation
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+            } else {
+                currentSlide = slides.length - 1; // Loop to the last slide
+            }
+            showSlide(currentSlide);
+        }
+
+        function checkAnswer(questionName, correctAnswer) {
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswer) {
+                    feedbackDiv.textContent = "Correct! Well done!";
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.textContent = `Incorrect.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            } else {
+                feedbackDiv.textContent = "Please select an answer.";
+                feedbackDiv.className = 'feedback incorrect';
+            }
+        }
+
+        function resetPresentation() {
+            currentSlide = 0;
+            showSlide(currentSlide);
+
+            // Clear feedback messages for all questions
+            document.querySelectorAll('.feedback').forEach(div => {
+                div.textContent = '';
+                div.className = 'feedback'; // Reset class
+            });
+
+            // Deselect all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initialize the presentation
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
