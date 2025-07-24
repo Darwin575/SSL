@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabbath School Lesson - Thursday, July 24</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.8;
+        padding: 25px;
+      }
+
+      .presentation-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .slide {
+        display: none !important;
+        padding: 15px;
+        animation: fadeIn 0.8s ease-out;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .slide.active {
+        display: flex !important;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 3em;
+        margin-bottom: 25px;
+      }
+
+      h2 {
+        color: #34495e;
+        font-size: 2.8em;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 2.2em;
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+
+      .verse-content {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 20px;
+        margin: 20px auto;
+        text-align: left;
+        font-style: italic;
+        font-size: 2.2em;
+        border-radius: 5px;
+        max-width: 90%;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.7em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin: 0 12px;
+        min-width: 120px;
+        flex-shrink: 0;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+        transform: translateY(-3px);
+      }
+
+      button:active {
+        background-color: #1f628d;
+        transform: translateY(0);
+      }
+
+      .question-options {
+        text-align: left;
+        margin: 30px auto;
+        max-width: 1050px;
+        font-size: 2.1em;
+        width: 100%;
+      }
+
+      .question-options label {
+        display: block;
+        margin-bottom: 15px;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+      }
+
+      .question-options label:hover {
+        background-color: #e0f2f7;
+      }
+
+      .question-options input[type="radio"] {
+        margin-right: 15px;
+        transform: scale(1.5);
+        vertical-align: middle;
+      }
+
+      .feedback {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 1.9em;
+        margin-bottom: 25px;
+      }
+
+      .feedback.correct {
+        color: #27ae60;
+      }
+
+      .feedback.incorrect {
+        color: #e74c3c;
+      }
+
+      .slide-content-wrapper {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .navigation-buttons {
+        flex-shrink: 0;
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .poll-bar-container {
+        display: flex;
+        gap: 18px;
+        margin: 18px 0 0 0;
+        justify-content: center;
+      }
+      .poll-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+      }
+      .poll-bar-label {
+        font-size: 1.3em;
+        margin-bottom: 6px;
+      }
+      .poll-bar-bar {
+        width: 100%;
+        height: 22px;
+        background: #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 4px;
+      }
+      .poll-bar-fill {
+        height: 100%;
+        background: #3498db;
+        border-radius: 8px;
+        transition: width 0.3s;
+      }
+      .poll-bar-count {
+        font-size: 1.1em;
+        color: #34495e;
+      }
+
+      /* Speech recognition status indicator */
+      .speech-status {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: white;
+        font-size: 14px;
+        z-index: 1000;
+      }
+      .speech-status.listening {
+        background-color: #27ae60;
+      }
+      .speech-status.not-listening {
+        background-color: #e74c3c;
+      }
+      .speech-status.not-supported {
+        background-color: #95a5a6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="speech-status not-supported" id="speechStatus">
+      Speech not supported
+    </div>
+
+    <div class="presentation-container">
+      <div class="slide active" id="slide1">
+        <div class="slide-content-wrapper">
+          <h1>Sabbath School Lesson: The Plagues</h1>
+          <h2>Thursday, July 24: Hail, Locusts, and Darkness</h2>
+          <p>
+            Memory Text: "So the heart of Pharaoh was hard; neither would he let
+            the children of Israel go, as the LORD had spoken by Moses" (Exodus
+            9:35, NKJV).
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide2">
+        <div class="slide-content-wrapper">
+          <h2>The Plagues: God vs. gods</h2>
+          <p>
+            The ten plagues in Egypt were aimed not at the Egyptian people but
+            at their gods. Each plague hit at least one of them. This was a
+            direct confrontation between the living God and the "gods" of Egypt.
+          </p>
+          <p>
+            The biblical text states: "On all the gods of Egypt I will execute
+            judgments: I am the LORD" (Exodus 12:12, ESV).
+          </p>
+          <p>
+            Today, we'll focus on the plagues of Hail, Locusts, and Darkness,
+            and what they reveal about God and Pharaoh's heart.
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide3">
+        <div class="slide-content-wrapper">
+          <h2>Question 1: Target of the Plagues</h2>
+          <p>
+            According to the lesson, what was the primary target of the plagues
+            of Egypt? <strong></strong>
+          </p>
+          <div class="question-options">
+            <label
+              ><input type="radio" name="q1" value="a" /> A) The common Egyptian
+              people to punish them for slavery.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="b" /> B) Egypt's economy and
+              agricultural system.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="c" /> C) The specific gods
+              and goddesses worshipped in Egypt.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="d" /> D) Pharaoh's personal
+              wealth and royal treasury.</label
+            >
+          </div>
+          <button onclick="checkAnswer('q1', 'c')">Check Answer</button>
+          <div id="feedback-q1" class="feedback"></div>
+
+          <div class="poll-bar-container" id="poll-q1">
+            <div class="poll-bar">
+              <span class="poll-bar-label">A</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q1-a"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q1-count-a">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">B</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q1-b"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q1-count-b">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">C</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q1-c"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q1-count-c">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">D</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q1-d"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q1-count-d">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide4">
+        <div class="slide-content-wrapper">
+          <h2>The Hail Plague (Seventh Plague)</h2>
+          <p>
+            The seventh plague brought devastating hail, challenging Egyptian
+            deities like Nut (sky goddess) and Osiris (crops/fertility god).
+          </p>
+          <div class="verse-content">
+            <b>Exodus 9:18-19 (KJV):</b><br />
+            <sup>18</sup> Behold, to morrow about this time I will cause it to
+            rain a very grievous hail, such as hath not been in Egypt since the
+            foundation thereof even until now.<br />
+            <sup>19</sup> Send therefore now, and gather thy cattle, and all
+            that thou hast in the field; for upon every man and beast which
+            shall be found in the field, and shall not be brought home, the hail
+            shall come down upon them, and they shall die.
+          </div>
+          <p>
+            This plague offered a test: "will they, or will they not, believe
+            God's Word and act accordingly?"
+          </p>
+          <p>
+            Pharaoh even confessed, "I have sinned this time; the LORD is the
+            righteous one, and I and my people are the wicked ones" (Exodus
+            9:27, NASB), but later changed his mind.
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide5">
+        <div class="slide-content-wrapper">
+          <h2>Question 2: Test of Belief</h2>
+          <p>
+            During the plague of hail, what action was described as a test of
+            whether people would believe God's Word and act accordingly?
+            <strong></strong>
+          </p>
+          <div class="question-options">
+            <label
+              ><input type="radio" name="q2" value="a" /> A) Confessing their
+              sins directly to Moses and Aaron.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="b" /> B) Hiding their cattle
+              and property in safe shelters.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="c" /> C) Offering sacrifices
+              to the Lord outside of Egypt.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="d" /> D) Fleeing Egypt
+              immediately before the plague struck.</label
+            >
+          </div>
+          <button onclick="checkAnswer('q2', 'b')">Check Answer</button>
+          <div id="feedback-q2" class="feedback"></div>
+
+          <div class="poll-bar-container" id="poll-q2">
+            <div class="poll-bar">
+              <span class="poll-bar-label">A</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q2-a"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q2-count-a">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">B</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q2-b"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q2-count-b">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">C</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q2-c"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q2-count-c">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">D</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q2-d"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q2-count-d">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide6">
+        <div class="slide-content-wrapper">
+          <h2>Locusts (Eighth Plague) & Darkness (Ninth Plague)</h2>
+          <p>
+            The locusts attacked Egyptian gods like Seth (storm/agriculture
+            god). The lesson reminds us that "idols are nothing" (Isa. 44:9-10).
+          </p>
+          <div class="verse-content">
+            <b>Exodus 10:4-5 (KJV - Locusts):</b><br />
+            <sup>4</sup> Else, if thou refuse to let my people go, behold, to
+            morrow will I bring the locusts into thy coast:<br />
+            <sup>5</sup> And they shall cover the face of the earth, that one
+            cannot be able to see the earth: and they shall eat the residue of
+            that which is escaped, which remaineth unto you from the hail, and
+            shall eat every tree which groweth for you out of the field:
+          </div>
+          <p>
+            The plague of darkness directly defeated Ra, the principal Egyptian
+            sun god, and Thoth, a moon god. The separation was spectacular:
+            "there was light where the Israelites lived."
+          </p>
+          <div class="verse-content">
+            <b>Exodus 10:22-23 (KJV - Darkness):</b><br />
+            <sup>22</sup> And Moses stretched forth his hand toward heaven; and
+            there was a thick darkness in all the land of Egypt three days:<br />
+            <sup>23</sup> They saw not one another, neither rose any from his
+            place for three days: but all the children of Israel had light in
+            their dwellings.
+          </div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide7">
+        <div class="slide-content-wrapper">
+          <h2>Question 3: Pharaoh's Stubbornness</h2>
+          <p>
+            Despite the devastating effects of the hail, locusts, and darkness,
+            what was highlighted as a significant factor in Pharaoh's continued
+            refusal to let Israel go?
+            <strong></strong>
+          </p>
+          <div class="question-options">
+            <label
+              ><input type="radio" name="q3" value="a" /> A) His sincere belief
+              in the power of his own gods.</label
+            >
+            <label
+              ><input type="radio" name="q3" value="b" /> B) His fear of losing
+              control over his vast kingdom.</label
+            >
+            <label
+              ><input type="radio" name="q3" value="c" /> C) His concern for the
+              well-being and safety of his remaining people.</label
+            >
+            <label
+              ><input type="radio" name="q3" value="d" /> D) His pride and
+              haughty spirit, as suggested by Proverbs 16:18.</label
+            >
+          </div>
+          <button onclick="checkAnswer('q3', 'd')">Check Answer</button>
+          <div id="feedback-q3" class="feedback"></div>
+
+          <div class="poll-bar-container" id="poll-q3">
+            <div class="poll-bar">
+              <span class="poll-bar-label">A</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q3-a"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q3-count-a">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">B</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q3-b"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q3-count-b">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">C</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q3-c"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q3-count-c">0</span>
+            </div>
+            <div class="poll-bar">
+              <span class="poll-bar-label">D</span>
+              <div class="poll-bar-bar">
+                <div class="poll-bar-fill" id="poll-q3-d"></div>
+              </div>
+              <span class="poll-bar-count" id="poll-q3-count-d">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide8">
+        <div class="slide-content-wrapper">
+          <h2>Concluding Thought</h2>
+          <p>
+            Pharaoh's problem wasn't intellectual; he had enough rational
+            evidence. Instead, it was a problem of his heart. His continuous
+            rejection of God's power and will was a tragic example of pride
+            leading to destruction.
+          </p>
+          <p>
+            Just as God repeatedly sought Pharaoh's attention, He continually
+            seeks ours. May we always have hearts open to His promptings,
+            learning from Pharaoh's stubbornness!
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="resetPresentation()">Restart</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      let recognition = null;
+      let isListening = false;
+      let recognitionTimeout = null;
+      let autoRestartSpeech = false; // Controls auto-restart for continuous listening
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) {
+            slide.classList.add("active");
+          }
+        });
+      }
+
+      function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+        } else {
+          currentSlide = 0;
+        }
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+        } else {
+          currentSlide = slides.length - 1;
+        }
+        showSlide(currentSlide);
+      }
+
+      function checkAnswer(questionName, correctAnswer) {
+        const selectedOption = document.querySelector(
+          `input[name="${questionName}"]:checked`
+        );
+        const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+
+        if (selectedOption) {
+          if (selectedOption.value === correctAnswer) {
+            feedbackDiv.textContent = "Correct! Well done.";
+            feedbackDiv.className = "feedback correct";
+          } else {
+            feedbackDiv.textContent = `Incorrect.`;
+            feedbackDiv.className = "feedback incorrect";
+          }
+        } else {
+          feedbackDiv.textContent = "Please select an answer.";
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+
+      function resetPresentation() {
+        currentSlide = 0;
+        showSlide(currentSlide);
+
+        document.querySelectorAll(".feedback").forEach((div) => {
+          div.textContent = "";
+          div.className = "feedback";
+        });
+
+        document
+          .querySelectorAll('input[type="radio"]')
+          .forEach((radio) => (radio.checked = false));
+
+        // Reset poll counts
+        Object.keys(pollCounts).forEach((question) => {
+          pollCounts[question] = { a: 0, b: 0, c: 0, d: 0 };
+          updatePollBar(question);
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          nextSlide();
+        } else if (event.key === "ArrowLeft") {
+          prevSlide();
+        }
+      });
+
+      // Poll functionality
+      const pollCounts = {
+        q1: { a: 0, b: 0, c: 0, d: 0 },
+        q2: { a: 0, b: 0, c: 0, d: 0 },
+        q3: { a: 0, b: 0, c: 0, d: 0 },
+      };
+
+      function updatePollBar(question) {
+        const total =
+          Object.values(pollCounts[question]).reduce((a, b) => a + b, 0) || 1;
+        ["a", "b", "c", "d"].forEach((letter) => {
+          const count = pollCounts[question][letter];
+          const percent = Math.round((count / total) * 100);
+          const fillElement = document.getElementById(
+            `poll-${question}-${letter}`
+          );
+          const countElement = document.getElementById(
+            `poll-${question}-count-${letter}`
+          );
+
+          if (fillElement) fillElement.style.width = percent + "%";
+          if (countElement) countElement.textContent = count;
+        });
+      }
+
+      function addPollVote(question, letter) {
+        if (
+          pollCounts[question] &&
+          pollCounts[question][letter] !== undefined
+        ) {
+          pollCounts[question][letter]++;
+          updatePollBar(question);
+          console.log(
+            `Added vote for ${question}-${letter}. New count:`,
+            pollCounts[question][letter]
+          );
+        }
+      }
+
+      function getCurrentQuestion() {
+        // Check which question slide is currently active
+        if (document.getElementById("slide3").classList.contains("active"))
+          return "q1";
+        if (document.getElementById("slide5").classList.contains("active"))
+          return "q2";
+        if (document.getElementById("slide7").classList.contains("active"))
+          return "q3";
+        return null;
+      }
+
+      function updateSpeechStatus(status, message) {
+        const statusElement = document.getElementById("speechStatus");
+        statusElement.className = `speech-status ${status}`;
+        statusElement.textContent = message;
+      }
+
+      // Initialize Speech Recognition
+      function initSpeechRecognition() {
+        if (
+          !("webkitSpeechRecognition" in window) &&
+          !("SpeechRecognition" in window)
+        ) {
+          updateSpeechStatus(
+            "not-supported",
+            "Speech recognition not supported"
+          );
+          return;
+        }
+
+        const SpeechRecognition =
+          window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function () {
+          isListening = true;
+          updateSpeechStatus("listening", "🎤");
+          console.log("Speech recognition started");
+        };
+
+        recognition.onend = function () {
+          isListening = false;
+          updateSpeechStatus("not-listening", "🔇");
+          console.log("Speech recognition ended");
+
+          // Clear any existing timeout
+          if (recognitionTimeout) {
+            clearTimeout(recognitionTimeout);
+            recognitionTimeout = null;
+          }
+
+          // Auto-restart logic for continuous listening
+          if (autoRestartSpeech && !recognition.manualStop) {
+            recognitionTimeout = setTimeout(() => {
+              try {
+                recognition.start();
+              } catch (e) {
+                console.error("Error auto-restarting recognition:", e);
+              }
+            }, 600); // Short delay before restarting
+          }
+          recognition.manualStop = false; // Reset manual stop flag
+        };
+
+        recognition.onerror = function (event) {
+          console.error("Speech recognition error:", event.error);
+          isListening = false;
+          updateSpeechStatus("not-listening", `Error: ${event.error}`);
+        };
+
+        recognition.onresult = function (event) {
+          const transcript = event.results[0][0].transcript
+            .toLowerCase()
+            .trim();
+          console.log("Transcript received:", transcript);
+
+          const currentQuestion = getCurrentQuestion();
+          if (currentQuestion) {
+            // Look for single letters A, B, C, D or mapped words
+            let letter = null;
+            const letterMatch = transcript.match(/\b([abcd])\b/);
+            if (letterMatch) {
+              letter = letterMatch[1];
+            } else if (transcript.includes("apple")) {
+              letter = "a";
+            } else if (transcript.includes("boy")) {
+              letter = "b";
+            } else if (
+              transcript.includes("cat") ||
+              transcript.includes("call")
+            ) {
+              letter = "c";
+            } else if (transcript.includes("dog")) {
+              letter = "d";
+            }
+            if (letter) {
+              addPollVote(currentQuestion, letter);
+              console.log(
+                `Voice vote registered: ${letter.toUpperCase()} for ${currentQuestion}`
+              );
+            }
+          }
+        };
+
+        // Add click handler to speech status
+        document
+          .getElementById("speechStatus")
+          .addEventListener("click", toggleListening);
+
+        updateSpeechStatus("not-listening", "🔇");
+      }
+
+      function startListening() {
+        if (recognition && !isListening) {
+          try {
+            // Clear any pending restart timeouts
+            if (recognitionTimeout) {
+              clearTimeout(recognitionTimeout);
+              recognitionTimeout = null;
+            }
+            autoRestartSpeech = true; // Enable auto-restart for continuous listening
+            recognition.manualStop = false;
+            recognition.start();
+          } catch (e) {
+            console.error("Error starting recognition:", e);
+            isListening = false;
+            updateSpeechStatus("not-listening", "Error starting recognition");
+          }
+        }
+      }
+
+      function stopListening() {
+        if (recognition && isListening) {
+          autoRestartSpeech = false; // Disable auto-restart when manually stopped
+          recognition.manualStop = true; // Flag to prevent auto-restart
+          recognition.stop();
+        }
+
+        // Clear any pending restart timeouts
+        if (recognitionTimeout) {
+          clearTimeout(recognitionTimeout);
+          recognitionTimeout = null;
+        }
+      }
+
+      function toggleListening() {
+        if (isListening) {
+          stopListening();
+        } else {
+          startListening();
+        }
+      }
+
+      // Initialize everything when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+        updatePollBar("q1");
+        updatePollBar("q2");
+        updatePollBar("q3");
+        initSpeechRecognition();
+      });
+
+      // Remove auto-start listening when on question slides
+      // Only allow manual start/stop via speechStatus click
+
+      const originalShowSlide = showSlide;
+      showSlide = function (index) {
+        originalShowSlide(index);
+        // Stop listening when changing slides
+        stopListening();
+      };
+    </script>
+  </body>
+</html>
