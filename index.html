@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabbath School Lesson - Thursday, July 24</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.8;
+        padding: 25px;
+      }
+
+      .presentation-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .slide {
+        display: none !important;
+        padding: 15px;
+        animation: fadeIn 0.8s ease-out;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .slide.active {
+        display: flex !important;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 3em;
+        margin-bottom: 25px;
+      }
+
+      h2 {
+        color: #34495e;
+        font-size: 2.8em;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 2.2em;
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+
+      .verse-content {
+        background-color: #e8f5e9;
+        border-left: 5px solid #4caf50;
+        padding: 20px;
+        margin: 20px auto;
+        text-align: left;
+        font-style: italic;
+        font-size: 2.2em;
+        border-radius: 5px;
+        max-width: 90%;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.7em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin: 0 12px;
+        min-width: 120px;
+        flex-shrink: 0;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+        transform: translateY(-3px);
+      }
+
+      button:active {
+        background-color: #1f628d;
+        transform: translateY(0);
+      }
+
+      .question-options {
+        text-align: left;
+        margin: 30px auto;
+        max-width: 1050px;
+        font-size: 2.1em;
+        width: 100%;
+      }
+
+      .question-options label {
+        display: block;
+        margin-bottom: 15px;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+      }
+
+      .question-options label:hover {
+        background-color: #e0f2f7;
+      }
+
+      .question-options input[type="radio"] {
+        margin-right: 15px;
+        transform: scale(1.5);
+        vertical-align: middle;
+      }
+
+      .feedback {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 1.9em;
+        margin-bottom: 25px;
+      }
+
+      .feedback.correct {
+        color: #27ae60;
+      }
+
+      .feedback.incorrect {
+        color: #e74c3c;
+      }
+
+      .slide-content-wrapper {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .navigation-buttons {
+        flex-shrink: 0;
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .poll-bar-container {
+        display: flex;
+        gap: 18px;
+        margin: 18px 0 0 0;
+        justify-content: center;
+      }
+      .poll-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+      }
+      .poll-bar-label {
+        font-size: 1.3em;
+        margin-bottom: 6px;
+      }
+      .poll-bar-bar {
+        width: 100%;
+        height: 22px;
+        background: #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 4px;
+      }
+      .poll-bar-fill {
+        height: 100%;
+        background: #3498db;
+        border-radius: 8px;
+        transition: width 0.3s;
+      }
+      .poll-bar-count {
+        font-size: 1.1em;
+        color: #34495e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="presentation-container">
+      <div class="slide active" id="slide1">
+        <div class="slide-content-wrapper">
+          <h1>Sabbath School Lesson: The Plagues</h1>
+          <h2>Thursday, July 24: Hail, Locusts, and Darkness</h2>
+          <p>
+            The ten plagues directly challenged Egypt's gods. Each plague
+            demonstrated God's judgment over their deities, confirming His
+            supremacy as the LORD (Exodus 12:12).
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide2">
+        <div class="slide-content-wrapper">
+          <h2>Question 1: Target of the Plagues</h2>
+          <p>
+            According to the lesson, what was the primary target of the plagues
+            of Egypt?
+          </p>
+          <div class="question-options">
+            <label
+              ><input type="radio" name="q1" value="a" /> A) The common Egyptian
+              people to punish them.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="b" /> B) Egypt's economy and
+              agricultural system.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="c" /> C) The specific gods
+              and goddesses worshipped in Egypt.</label
+            >
+            <label
+              ><input type="radio" name="q1" value="d" /> D) Pharaoh's personal
+              wealth and power.</label
+            >
+          </div>
+          <button onclick="checkAnswer('q1', 'c')">Check Answer</button>
+          <div id="feedback-q1" class="feedback"></div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide3">
+        <div class="slide-content-wrapper">
+          <h2>Hail (7th Plague) & Locusts (8th Plague)</h2>
+          <p>
+            The devastating <b>Hail</b> plague targeted sky and crop deities
+            (Nut, Osiris). It also tested belief: those who heeded God's warning
+            hid their property (Exod. 9:20-21).
+          </p>
+          <div class="verse-content">
+            <b>Exodus 9:18-19 (KJV):</b><br />
+            <sup>18</sup> Behold, to morrow...I will cause it to rain a very
+            grievous hail...<br />
+            <sup>19</sup> Send therefore now, and gather thy cattle... for...the
+            hail shall come down upon them, and they shall die.
+          </div>
+          <p>
+            The <b>Locusts</b> plague defeated storm and agriculture gods
+            (Seth), showing "idols are nothing" (Isa. 44:9-10). Pharaoh's
+            servants urged him to release Israel, but he refused.
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide4">
+        <div class="slide-content-wrapper">
+          <h2>Darkness (9th Plague) & Pharaoh's Hardness</h2>
+          <p>
+            The three-day <b>Darkness</b> directly challenged Ra (sun god) and
+            Thoth (moon god). While Egypt was in thick darkness, "all the
+            children of Israel had light in their dwellings" (Exod. 10:22-23),
+            highlighting God's power and separation.
+          </p>
+          <p>
+            Despite constant evidence, Pharaoh's heart remained hard. The lesson
+            emphasizes his pride and haughty spirit, as noted in Proverbs 16:18.
+          </p>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="nextSlide()">Next</button>
+        </div>
+      </div>
+
+      <div class="slide" id="slide5">
+        <div class="slide-content-wrapper">
+          <h2>Question 2: Pharaoh's Stubbornness</h2>
+          <p>
+            Despite the devastating effects of the plagues, what was highlighted
+            as a significant factor in Pharaoh's continued refusal to let Israel
+            go?
+          </p>
+          <div class="question-options">
+            <label
+              ><input type="radio" name="q2" value="a" /> A) His sincere belief
+              in the power of his own gods.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="b" /> B) His fear of losing
+              control over his vast kingdom.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="c" /> C) His concern for the
+              well-being of his people.</label
+            >
+            <label
+              ><input type="radio" name="q2" value="d" /> D) His pride and
+              haughty spirit, as suggested by Proverbs 16:18.</label
+            >
+          </div>
+          <button onclick="checkAnswer('q2', 'd')">Check Answer</button>
+          <div id="feedback-q2" class="feedback"></div>
+        </div>
+        <div class="navigation-buttons">
+          <button onclick="prevSlide()">Previous</button>
+          <button onclick="resetPresentation()">Restart</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) {
+            slide.classList.add("active");
+          }
+        });
+      }
+
+      function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+        } else {
+          currentSlide = 0;
+        }
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+        } else {
+          currentSlide = slides.length - 1;
+        }
+        showSlide(currentSlide);
+      }
+
+      function checkAnswer(questionName, correctAnswer) {
+        const selectedOption = document.querySelector(
+          `input[name="${questionName}"]:checked`
+        );
+        const feedbackDiv = document.getElementById(`feedback-${questionName}`);
+
+        if (selectedOption) {
+          if (selectedOption.value === correctAnswer) {
+            feedbackDiv.textContent = "Correct! Well done.";
+            feedbackDiv.className = "feedback correct";
+          } else {
+            feedbackDiv.textContent = `Incorrect.`;
+            feedbackDiv.className = "feedback incorrect";
+          }
+        } else {
+          feedbackDiv.textContent = "Please select an answer.";
+          feedbackDiv.className = "feedback incorrect";
+        }
+      }
+
+      function resetPresentation() {
+        currentSlide = 0;
+        showSlide(currentSlide);
+
+        document.querySelectorAll(".feedback").forEach((div) => {
+          div.textContent = "";
+          div.className = "feedback";
+        });
+
+        document
+          .querySelectorAll('input[type="radio"]')
+          .forEach((radio) => (radio.checked = false));
+
+        // Reset poll counts
+        Object.keys(pollCounts).forEach((question) => {
+          pollCounts[question] = { a: 0, b: 0, c: 0, d: 0 };
+          updatePollBar(question);
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          nextSlide();
+        } else if (event.key === "ArrowLeft") {
+          prevSlide();
+        }
+      });
+
+      // Poll functionality
+      const pollCounts = {
+        q1: { a: 0, b: 0, c: 0, d: 0 },
+        q2: { a: 0, b: 0, c: 0, d: 0 },
+        q3: { a: 0, b: 0, c: 0, d: 0 },
+      };
+
+      function updatePollBar(question) {
+        const total =
+          Object.values(pollCounts[question]).reduce((a, b) => a + b, 0) || 1;
+        ["a", "b", "c", "d"].forEach((letter) => {
+          const count = pollCounts[question][letter];
+          const percent = Math.round((count / total) * 100);
+          const fillElement = document.getElementById(
+            `poll-${question}-${letter}`
+          );
+          const countElement = document.getElementById(
+            `poll-${question}-count-${letter}`
+          );
+
+          if (fillElement) fillElement.style.width = percent + "%";
+          if (countElement) countElement.textContent = count;
+        });
+      }
+
+      function addPollVote(question, letter) {
+        if (
+          pollCounts[question] &&
+          pollCounts[question][letter] !== undefined
+        ) {
+          pollCounts[question][letter]++;
+          updatePollBar(question);
+          console.log(
+            `Added vote for ${question}-${letter}. New count:`,
+            pollCounts[question][letter]
+          );
+        }
+      }
+
+      function getCurrentQuestion() {
+        // Check which question slide is currently active
+        if (document.getElementById("slide3").classList.contains("active"))
+          return "q1";
+        if (document.getElementById("slide5").classList.contains("active"))
+          return "q2";
+        if (document.getElementById("slide7").classList.contains("active"))
+          return "q3";
+        return null;
+      }
+
+      // Initialize everything when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+        updatePollBar("q1");
+        updatePollBar("q2");
+        updatePollBar("q3");
+      });
+    </script>
+  </body>
+</html>
